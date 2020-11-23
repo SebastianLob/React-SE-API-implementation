@@ -1,28 +1,37 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import NavBar from '../NavBar';
+import ResultsList from '../ResultsList';
+import About from '../About';
+import SimpleAlert from '../SimpleAlert';
+import { Google_API, Bing_API } from '../../config/api';
 import { useDispatch } from 'react-redux';
-import './App.css';
+import { showAlert } from '../SimpleAlert/actions';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: 'TEST' });
-  }, [dispatch]);
+    if (!Google_API.params.key || !Google_API.params.cx || !Bing_API.key) {
+      dispatch(
+        showAlert({
+          type: 'warning',
+          title: 'Configuration needed',
+          message:
+            'You must configure the API completing the keys and the cx in src/config/api.js.',
+        })
+      );
+    }
+  }, []);
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavBar />
+      <SimpleAlert />
+      <Switch>
+        <Route exact path='/' children={<ResultsList />} />
+        <Route exact path='/about' children={<About />} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
