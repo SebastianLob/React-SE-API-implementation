@@ -9,6 +9,7 @@ import {
 import { GoogleGet, BingGet } from '../../api/get';
 import { fetchResultsSuccess } from './actions';
 import { parseBingData, parseGoogleData } from './parseSEData';
+import { showAlert } from '../SimpleAlert/actions';
 
 export default function* SearcherSaga() {
   yield takeLatest(FETCH_RESULTS, fetchResults);
@@ -56,7 +57,7 @@ function* search({ searchEngine, q, offset = 0 }) {
           totalResults: googleResults.data.searchInformation.totalResults,
         };
     } catch (error) {
-      console.error(error);
+      yield displayError(error);
     }
   }
   if (searchEngine === 'bing' || searchEngine === 'any') {
@@ -70,9 +71,19 @@ function* search({ searchEngine, q, offset = 0 }) {
           totalResults: bingResults.data.webPages.totalEstimatedMatches,
         };
     } catch (error) {
-      console.error(error);
+      yield displayError(error);
     }
   }
 
   return payload;
+}
+
+function* displayError(error) {
+  yield put(
+    showAlert({
+      type: 'danger',
+      title: error.name,
+      message: error.message,
+    })
+  );
 }
