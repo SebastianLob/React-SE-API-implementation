@@ -5,6 +5,7 @@ import {
   FETCH_RESULTS_SUCCESS,
   FETCH_RESULTS_ERROR,
   CLEAR_RESULTS,
+  FETCH_RESULTS_PAGED,
 } from './constants';
 
 export const changeInputValue = (payload) => {
@@ -15,6 +16,9 @@ export const changeSearchEngine = (payload) => {
 };
 export const fetchResults = (payload) => {
   return { type: FETCH_RESULTS, payload };
+};
+export const fetchResultsPaged = (payload) => {
+  return { type: FETCH_RESULTS_PAGED, payload };
 };
 export const fetchResultsSuccess = (payload) => {
   return { type: FETCH_RESULTS_SUCCESS, payload };
