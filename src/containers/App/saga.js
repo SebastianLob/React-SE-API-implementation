@@ -16,14 +16,14 @@ export default function* SearcherSaga() {
   yield takeLatest(FETCH_RESULTS_PAGED, fetchResultsPaged);
 }
 
-function* fetchResults() {
+export function* fetchResults() {
   const q = yield select(qSelector);
   const searchEngine = yield select(searchEngineSelector);
   const payload = yield search({ searchEngine, q });
   yield put(fetchResultsSuccess(payload));
 }
 
-function* fetchResultsPaged(action) {
+export function* fetchResultsPaged(action) {
   const actualOffset = yield select(OffsetsSelector);
   const actualState = yield select(SEStateSelector);
   if (action.payload.offset === actualOffset[action.payload.SE.toLowerCase()]) {
@@ -38,7 +38,7 @@ function* fetchResultsPaged(action) {
   yield put(fetchResultsSuccess(payload));
 }
 
-function* search({ searchEngine, q, offset = 0 }) {
+export function* search({ searchEngine, q, offset = 0 }) {
   let payload = {
     google: {},
     bing: {},
@@ -78,7 +78,7 @@ function* search({ searchEngine, q, offset = 0 }) {
   return payload;
 }
 
-function* displayError(error) {
+export function* displayError(error) {
   yield put(
     showAlert({
       type: 'danger',

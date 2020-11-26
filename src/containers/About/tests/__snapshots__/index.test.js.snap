@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic Pagination should render and match the snapshot 1`] = `
+<Container
+  fluid={true}
+>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={3}
+    />
+    <Col
+      md={6}
+    >
+      This site was created for implementing the Google and Bing Search engines API's. It was created by
+       
+      <a
+        href="https://www.linkedin.com/in/agustinknaupp/"
+      >
+        Agustin Knaupp
+      </a>
+      .
+    </Col>
+    <Col
+      md={3}
+    />
+  </Row>
+</Container>
+`;
