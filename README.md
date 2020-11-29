@@ -29,6 +29,6 @@ This app was created to implement the google and bing's APIs in a React project.
 
 ## Next steps
 
-- Tests: you may have noticed the lack of tests in the app. I'll be adding unit tests and snapshots in future commits. For this, we will user Jest and Enzyme.
+- Tests: you may have noticed the lack of tests in some parts of the app. I'll be adding unit tests and snapshots in future commits. For this, we will user Jest and Enzyme.
 - Error Handling: There are many errors that we are not being specific about to the user. This must be changed to a more descriptive message and a secondary way to solve it.
 - Adding more Search engines: Right now the app is atached to the currect state structure, meaning that if we don't want to configure Google o Bing we can't. The idea is to abstract our app from the engines and bundle them in a different way so we can easily remove or add other APIs for search.
