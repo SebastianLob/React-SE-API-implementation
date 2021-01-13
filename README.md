@@ -1,4 +1,4 @@
-# Implementing Google's and Bing's custom search APIs
+# Implementing Google and Bing's custom search APIs
 
 ## Context
 
